@@ -60,10 +60,10 @@ point_index = 1
 count = sp_speed_threshold
 polyline_index = 0
 
-ocean_shp = arcpy.da.SearchCursor(ocean_shp_name, ["SHAPE@"])
-ocean_list = []
-for ocean in ocean_shp:
-    ocean_list.append(ocean[0])
+port_shp = arcpy.da.SearchCursor(ocean_shp_name, ["SHAPE@"])
+port_list = []
+for port in port_shp:
+    port_list.append(port[0])
 
 
 class AISPoint(object):
@@ -116,7 +116,7 @@ class AISPoint(object):
             before_ship = after_ship
             after_ship = self.fetch_data()
 
-        self.final_deal_situation(before_ship, before_ship, )
+        self.final_deal_situation()
 
     def fetch_data(self, ):
         row = self.source_db.dbcursor.fetchone()
@@ -141,7 +141,7 @@ class AISPoint(object):
         self.init_value()
 
     def judge_second_situation(self, before_ship, after_ship):
-        return self.is_still_point(before_ship, after_ship)
+        return self.is_still_point(before_ship, after_ship) and after_ship.judge_in_ocean(port_list)
 
     def is_still_point(self, before_ship, after_ship):
         return (after_ship.speed < sp_speed_threshold and
@@ -152,18 +152,17 @@ class AISPoint(object):
         self.still_point_area.append_value(after_ship)
 
     def deal_default_situation(self, ):
-        self.export_still_point_set()
+        self.export_temp_still_point_set()
 
-    def export_still_point_set(self):
-        if self.still_point_area.is_suit_for_combine_set(self.still_point_area.temp_still_point_set,
-                                                         self.still_point_area.still_point_set):
-            self.still_point_area.update_temp_still_point_set()
-        else:
-            self.still_point_area.export_point_set(self.output_saver, self.still_point_area.temp_still_point_set)
-            self.still_point_area.export_temp_still_point_set(self.output_saver)
+    def export_temp_still_point_set(self):
+        if self.still_point_area.merge_still_point_set():
+            return
+
+        self.export_temp_still_point_set()
 
     def final_deal_situation(self, ):
         self.still_point_area.merge_still_point_set()
+        self.still_point_area.clean_all_dirty_set()
         self.still_point_area.export_all_point_set(self.output_saver)
 
     def finish(self):

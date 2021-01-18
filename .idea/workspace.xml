@@ -4,7 +4,12 @@
     <bookmark url="file://$PROJECT_DIR$/Step3_PointIdentification.py" line="101" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6a87f71b-cd23-4ca4-9576-ec28fce97416" name="Default" comment="" />
+    <list default="true" id="6a87f71b-cd23-4ca4-9576-ec28fce97416" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao/AISPoint.py" beforeDir="false" afterPath="$PROJECT_DIR$/dao/AISPoint.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao/StillPointArea.py" beforeDir="false" afterPath="$PROJECT_DIR$/dao/StillPointArea.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -35,9 +40,42 @@
               <entry file="file://$PROJECT_DIR$/Step3_PointIdentification.py">
                 <provider selected="true" editor-type-id="text-editor">
                   <state relative-caret-position="361">
-                    <caret line="82" selection-start-line="82" selection-end-line="89" selection-end-column="17" />
+                    <caret line="115" selection-start-line="115" selection-end-line="121" />
                     <folding>
                       <element signature="e#25#35#0" expanded="true" />
+                    </folding>
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+    <window id="3">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file leaf-file-name="StillPointArea.py" pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/dao/StillPointArea.py">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="759">
+                    <caret line="90" column="21" selection-start-line="90" selection-start-column="21" selection-end-line="90" selection-end-column="21" />
+                    <folding>
+                      <element signature="e#78#89#0" expanded="true" />
+                      <element signature="e#172#307#0" />
+                      <element signature="e#343#358#0" />
+                      <element signature="e#408#447#0" />
+                      <element signature="e#507#733#0" />
+                      <element signature="e#817#1382#0" />
+                      <element signature="e#1426#1490#0" />
+                      <element signature="e#617#766#0" />
+                      <element signature="e#750#839#0" />
+                      <element signature="e#1199#1413#0" />
+                      <element signature="e#2126#2217#0" />
+                      <element signature="e#2284#2437#0" />
+                      <element signature="e#2567#2721#0" />
+                      <element signature="e#2844#3039#0" />
                     </folding>
                   </state>
                 </provider>
@@ -83,15 +121,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StillPointArea.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/dao/StillPointArea.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="305">
-              <caret line="26" column="12" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Utils.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/util/Utils.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -101,15 +130,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AISPoint.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="AISPoint.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dao/AISPoint.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="412">
-              <caret line="162" column="55" lean-forward="true" selection-start-line="162" selection-start-column="55" selection-end-line="162" selection-end-column="55" />
+            <state relative-caret-position="307">
+              <caret line="86" column="35" lean-forward="true" selection-start-line="86" selection-start-column="35" selection-end-line="86" selection-end-column="35" />
               <folding>
                 <element signature="e#24#34#0" expanded="true" />
                 <element signature="e#2375#2478#0" />
                 <element signature="e#2547#2772#0" />
+                <element signature="e#3459#3707#0" />
               </folding>
             </state>
           </provider>
@@ -118,8 +148,8 @@
       <file leaf-file-name="Data.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dao/Data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="79">
-              <caret line="278" selection-start-line="278" selection-end-line="278" />
+            <state relative-caret-position="219">
+              <caret line="140" column="8" selection-start-line="140" selection-start-column="8" selection-end-line="140" selection-end-column="8" />
               <folding>
                 <element signature="e#4782#4960#0" />
                 <element signature="e#5019#5468#0" />
@@ -193,11 +223,14 @@
       <find>ocean_shp_name</find>
       <find>dirty</find>
       <find>clean</find>
-      <find>DetailData</find>
       <find>still_point_set</find>
       <find>still_point_area</find>
       <find>temp_still_point</find>
+      <find>DetailData</find>
     </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -239,11 +272,12 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-10" />
-    <option name="y" value="-10" />
-    <option name="width" value="2420" />
-    <option name="height" value="1370" />
+    <option name="x" value="-1286" />
+    <option name="y" value="139" />
+    <option name="width" value="1616" />
+    <option name="height" value="876" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -278,7 +312,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="http.proxy" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -451,20 +485,20 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-1608" y="174" width="1616" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.4078591" />
-      <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27680966" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26542416" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32384825" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3229308" />
       <window_info anchor="right" id="SciView" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39869282" />
@@ -504,7 +538,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="20" />
+      <option name="time" value="21" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -889,16 +923,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dao/Data.py">
+    <entry file="file://$PROJECT_DIR$/util/Utils.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="79">
-          <caret line="278" selection-start-line="278" selection-end-line="278" />
-          <folding>
-            <element signature="e#4782#4960#0" />
-            <element signature="e#5019#5468#0" />
-            <element signature="e#9243#9476#0" />
-            <element signature="e#9547#9949#0" />
-          </folding>
+        <state relative-caret-position="475">
+          <caret line="25" column="16" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
         </state>
       </provider>
     </entry>
@@ -915,36 +943,59 @@
     <entry file="file://$PROJECT_DIR$/Step3_PointIdentification.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="361">
-          <caret line="82" selection-start-line="82" selection-end-line="89" selection-end-column="17" />
+          <caret line="115" selection-start-line="115" selection-end-line="121" />
           <folding>
             <element signature="e#25#35#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/util/Utils.py">
+    <entry file="file://$PROJECT_DIR$/dao/Data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="25" column="16" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dao/AISPoint.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="412">
-          <caret line="162" column="55" lean-forward="true" selection-start-line="162" selection-start-column="55" selection-end-line="162" selection-end-column="55" />
+        <state relative-caret-position="219">
+          <caret line="140" column="8" selection-start-line="140" selection-start-column="8" selection-end-line="140" selection-end-column="8" />
           <folding>
-            <element signature="e#24#34#0" expanded="true" />
-            <element signature="e#2375#2478#0" />
-            <element signature="e#2547#2772#0" />
+            <element signature="e#4782#4960#0" />
+            <element signature="e#5019#5468#0" />
+            <element signature="e#9243#9476#0" />
+            <element signature="e#9547#9949#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dao/StillPointArea.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="26" column="12" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="12" />
+        <state relative-caret-position="759">
+          <caret line="90" column="21" selection-start-line="90" selection-start-column="21" selection-end-line="90" selection-end-column="21" />
+          <folding>
+            <element signature="e#78#89#0" expanded="true" />
+            <element signature="e#172#307#0" />
+            <element signature="e#343#358#0" />
+            <element signature="e#408#447#0" />
+            <element signature="e#507#733#0" />
+            <element signature="e#817#1382#0" />
+            <element signature="e#1426#1490#0" />
+            <element signature="e#617#766#0" />
+            <element signature="e#750#839#0" />
+            <element signature="e#1199#1413#0" />
+            <element signature="e#2126#2217#0" />
+            <element signature="e#2284#2437#0" />
+            <element signature="e#2567#2721#0" />
+            <element signature="e#2844#3039#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dao/AISPoint.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="86" column="35" lean-forward="true" selection-start-line="86" selection-start-column="35" selection-end-line="86" selection-end-column="35" />
+          <folding>
+            <element signature="e#24#34#0" expanded="true" />
+            <element signature="e#2375#2478#0" />
+            <element signature="e#2547#2772#0" />
+            <element signature="e#3459#3707#0" />
+          </folding>
         </state>
       </provider>
     </entry>
