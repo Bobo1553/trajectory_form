@@ -107,7 +107,7 @@ class AISPoint(object):
             elif self.judge_second_situation(before_ship, after_ship):
                 self.deal_second_situation(after_ship, )
             else:
-                self.deal_default_situation()
+                self.deal_default_situation(after_ship)
 
             before_ship = after_ship
             after_ship = self.fetch_data()
@@ -158,11 +158,11 @@ class AISPoint(object):
         self.ais_state = Const.STILL
         self.still_point_area.append_value(ship_point)
 
-    def deal_default_situation(self, ):
+    def deal_default_situation(self, after_ship):
         if self.ais_state == Const.MOVING:
-            self.deal_moving_situation()
+            self.deal_moving_situation(after_ship)
         else:
-            self.deal_still_to_moving_situation()
+            self.deal_still_to_moving_situation(after_ship)
         # self.export_before_before_still_point_set()
 
     def deal_moving_situation(self, ship_point):
