@@ -104,7 +104,7 @@ def mmsi_identify():
             if detail_data.judge_repeat(temp_data):
                 continue
 
-            if not temp_data.judge_in_ocean(ocean_list):
+            if not temp_data.judge_in_shp(ocean_list):
                 continue
 
             if temp_data.mmsi == detail_data.mmsi:

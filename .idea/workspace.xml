@@ -5,10 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6a87f71b-cd23-4ca4-9576-ec28fce97416" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/const/Const.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dao/Trajectory.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Step2_MMSIIdentify.py" beforeDir="false" afterPath="$PROJECT_DIR$/Step2_MMSIIdentify.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Step3_PointIdentification.py" beforeDir="false" afterPath="$PROJECT_DIR$/Step3_PointIdentification.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dao/AISPoint.py" beforeDir="false" afterPath="$PROJECT_DIR$/dao/AISPoint.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao/Data.py" beforeDir="false" afterPath="$PROJECT_DIR$/dao/Data.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dao/StillPointArea.py" beforeDir="false" afterPath="$PROJECT_DIR$/dao/StillPointArea.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/util/Utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/util/Utils.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,39 +25,20 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/DataManage$Step4_ChangePointExtract.coverage" NAME="Step4_ChangePointExtract Coverage Results" MODIFIED="1595670013581" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/DataManage$Step2_MMSIIdentify.coverage" NAME="Step2_MMSIIdentify Coverage Results" MODIFIED="1609987393677" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DataManage$Step3_PointIndentification0310.coverage" NAME="Step3_PointIndentification0310 Coverage Results" MODIFIED="1595665137581" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/DataManage$Step3_PointIdentification.coverage" NAME="Step3_PointIdentification Coverage Results" MODIFIED="1595783041946" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DataManage$Util.coverage" NAME="Util Coverage Results" MODIFIED="1595764443156" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DataManage$Data.coverage" NAME="Data Coverage Results" MODIFIED="1595664204268" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DataManage$Step3_PointIdentification0726.coverage" NAME="Step3_PointIdentification0726 Coverage Results" MODIFIED="1595782164932" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DataManage$Step0_ErrorCount.coverage" NAME="Step0_ErrorCount Coverage Results" MODIFIED="1609768132135" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/DataManage$test.coverage" NAME="test Coverage Results" MODIFIED="1610977341614" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/DataManage$testDemo.coverage" NAME="testDemo Coverage Results" MODIFIED="1595762544343" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/DataManage$Step2_MMSIIdentify.coverage" NAME="Step2_MMSIIdentify Coverage Results" MODIFIED="1609987393677" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/DataManage$Step3_PointIdentification.coverage" NAME="Step3_PointIdentification Coverage Results" MODIFIED="1595783041946" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DataManage$read_excel.coverage" NAME="read_excel Coverage Results" MODIFIED="1610026522393" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DataManage$Step1_DataPreprocess.coverage" NAME="Step1_DataPreprocess Coverage Results" MODIFIED="1609986978041" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/DataManage$testDemo.coverage" NAME="testDemo Coverage Results" MODIFIED="1595762544343" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DataManage$Step5_CalculateWeight.coverage" NAME="Step5_CalculateWeight Coverage Results" MODIFIED="1595783794217" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="DockManager">
-    <window id="2">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file leaf-file-name="Step3_PointIdentification.py" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/Step3_PointIdentification.py">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="361">
-                    <caret line="115" selection-start-line="115" selection-end-line="121" />
-                    <folding>
-                      <element signature="e#25#35#0" expanded="true" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
     <window id="3">
       <content type="file-editors">
         <state>
@@ -59,23 +46,10 @@
             <file leaf-file-name="StillPointArea.py" pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/dao/StillPointArea.py">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="759">
-                    <caret line="90" column="21" selection-start-line="90" selection-start-column="21" selection-end-line="90" selection-end-column="21" />
+                  <state relative-caret-position="234">
+                    <caret line="34" column="8" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="8" />
                     <folding>
-                      <element signature="e#78#89#0" expanded="true" />
-                      <element signature="e#172#307#0" />
-                      <element signature="e#343#358#0" />
-                      <element signature="e#408#447#0" />
-                      <element signature="e#507#733#0" />
-                      <element signature="e#817#1382#0" />
-                      <element signature="e#1426#1490#0" />
-                      <element signature="e#617#766#0" />
-                      <element signature="e#750#839#0" />
-                      <element signature="e#1199#1413#0" />
-                      <element signature="e#2126#2217#0" />
-                      <element signature="e#2284#2437#0" />
-                      <element signature="e#2567#2721#0" />
-                      <element signature="e#2844#3039#0" />
+                      <element signature="e#78#88#0" expanded="true" />
                     </folding>
                   </state>
                 </provider>
@@ -91,8 +65,8 @@
       <file leaf-file-name="Step1_DataPreprocess.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Step1_DataPreprocess.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-566">
-              <caret line="72" selection-start-line="72" selection-end-line="72" />
+            <state relative-caret-position="430">
+              <caret line="106" lean-forward="true" selection-start-line="106" selection-end-line="106" />
               <folding>
                 <element signature="e#83#93#0" expanded="true" />
               </folding>
@@ -112,11 +86,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="read_excel.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/read_excel.py">
+      <file leaf-file-name="Step3_PointIdentification.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Step3_PointIdentification.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="8" column="11" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
+            <state relative-caret-position="294">
+              <caret line="241" column="4" selection-start-line="241" selection-start-column="4" selection-end-line="241" selection-end-column="4" />
+              <folding>
+                <element signature="e#25#35#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -124,8 +101,22 @@
       <file leaf-file-name="Utils.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/util/Utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="25" column="16" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
+            <state relative-caret-position="535">
+              <caret line="39" column="24" lean-forward="true" selection-start-line="39" selection-start-column="24" selection-end-line="39" selection-end-column="24" />
+              <folding>
+                <element signature="e#78#88#0" expanded="true" />
+                <element signature="e#231#444#0" />
+                <element signature="e#471#495#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Trajectory.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dao/Trajectory.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="208">
+              <caret line="55" column="51" lean-forward="true" selection-start-line="55" selection-start-column="51" selection-end-line="55" selection-end-column="51" />
             </state>
           </provider>
         </entry>
@@ -133,14 +124,38 @@
       <file leaf-file-name="AISPoint.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dao/AISPoint.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="307">
-              <caret line="86" column="35" lean-forward="true" selection-start-line="86" selection-start-column="35" selection-end-line="86" selection-end-column="35" />
+            <state relative-caret-position="164">
+              <caret line="171" column="37" lean-forward="true" selection-start-line="171" selection-start-column="37" selection-end-line="171" selection-end-column="37" />
               <folding>
                 <element signature="e#24#34#0" expanded="true" />
-                <element signature="e#2375#2478#0" />
-                <element signature="e#2547#2772#0" />
-                <element signature="e#3459#3707#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Const.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/const/Const.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="190">
+              <caret line="10" column="20" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="133">
+              <caret line="7" column="36" lean-forward="true" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="__builtin__.py" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/.PyCharm2018.1/system/python_stubs/1248084663/__builtin__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="297">
+              <caret line="2708" column="8" selection-start-line="2708" selection-start-column="8" selection-end-line="2708" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -148,44 +163,13 @@
       <file leaf-file-name="Data.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dao/Data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="219">
-              <caret line="140" column="8" selection-start-line="140" selection-start-column="8" selection-end-line="140" selection-end-column="8" />
+            <state relative-caret-position="390">
+              <caret line="223" column="39" selection-start-line="223" selection-start-column="39" selection-end-line="223" selection-end-column="39" />
               <folding>
-                <element signature="e#4782#4960#0" />
                 <element signature="e#5019#5468#0" />
                 <element signature="e#9243#9476#0" />
                 <element signature="e#9547#9949#0" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Step0_ErrorCount.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Step0_ErrorCount.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1197">
-              <caret line="70" selection-start-line="70" selection-end-line="70" />
-              <folding>
-                <element signature="e#77#87#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DBClass.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dao/DBClass.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="931">
-              <caret line="49" selection-start-line="49" selection-end-line="51" selection-end-column="83" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ConstSQL.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/const/ConstSQL.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="9" column="34" selection-start-line="9" selection-start-column="34" selection-end-line="9" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -201,9 +185,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>is</find>
-      <find>root_folder</find>
-      <find>result_folder</find>
       <find>route_point</find>
       <find>avg_acceleration</find>
       <find>rp_speed_threshold</find>
@@ -227,6 +208,13 @@
       <find>still_point_area</find>
       <find>temp_still_point</find>
       <find>DetailData</find>
+      <find>output_saver</find>
+      <find>sp_saver</find>
+      <find>trajectory_point_set</find>
+      <find>export_still_point_set</find>
+      <find>before_before_still_point_set</find>
+      <find>export_temp_still_point_set</find>
+      <find>before_before</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -256,7 +244,12 @@
         <option value="$PROJECT_DIR$/Dao/AISPoint.py" />
         <option value="$PROJECT_DIR$/Dao/StillPointArea.py" />
         <option value="$PROJECT_DIR$/Util/Utils.py" />
+        <option value="$PROJECT_DIR$/dao/Data.py" />
+        <option value="$PROJECT_DIR$/dao/Trjectory.py" />
         <option value="$PROJECT_DIR$/util/Utils.py" />
+        <option value="$PROJECT_DIR$/test.py" />
+        <option value="$PROJECT_DIR$/const/Const.py" />
+        <option value="$PROJECT_DIR$/dao/Trajectory.py" />
         <option value="$PROJECT_DIR$/dao/AISPoint.py" />
         <option value="$PROJECT_DIR$/dao/StillPointArea.py" />
       </list>
@@ -272,10 +265,10 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-1286" />
-    <option name="y" value="139" />
-    <option name="width" value="1616" />
-    <option name="height" value="876" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -290,6 +283,11 @@
             <path>
               <item name="DataManage" type="b2602c69:ProjectViewProjectNode" />
               <item name="DataManage" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DataManage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DataManage" type="462c0819:PsiDirectoryNode" />
+              <item name="const" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="DataManage" type="b2602c69:ProjectViewProjectNode" />
@@ -338,7 +336,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.read_excel">
+  <component name="RunManager" selected="Python.test">
     <configuration name="Step0_ErrorCount" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="DataManage" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -415,25 +413,6 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="Step5_CalculateWeight" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="DataManage" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="C:\Python27\ArcGIS10.2\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Step5_CalculateWeight.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
     <configuration name="read_excel" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="DataManage" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -453,21 +432,40 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="DataManage" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
     <list>
       <item itemvalue="Python.Step3_PointIndentification0310" />
-      <item itemvalue="Python.Step5_CalculateWeight" />
       <item itemvalue="Python.Step0_ErrorCount" />
       <item itemvalue="Python.Step1_DataPreprocess" />
       <item itemvalue="Python.Step2_MMSIIdentify" />
       <item itemvalue="Python.read_excel" />
+      <item itemvalue="Python.test" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.test" />
         <item itemvalue="Python.read_excel" />
         <item itemvalue="Python.Step2_MMSIIdentify" />
         <item itemvalue="Python.Step1_DataPreprocess" />
         <item itemvalue="Python.Step0_ErrorCount" />
-        <item itemvalue="Python.Step5_CalculateWeight" />
       </list>
     </recent_temporary>
   </component>
@@ -482,23 +480,31 @@
       <option name="presentableId" value="Default" />
       <updated>1595662316317</updated>
     </task>
+    <task id="LOCAL-00001" summary="完成静止点区域的代码编写">
+      <created>1610958938105</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1610958938105</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1608" y="174" width="1616" height="876" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.4078591" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.4078517" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26542416" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22014925" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3229308" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32279173" />
       <window_info anchor="right" id="SciView" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39869282" />
@@ -516,6 +522,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="完成静止点区域的代码编写" />
+    <option name="LAST_COMMIT_MESSAGE" value="完成静止点区域的代码编写" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -542,40 +552,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/util/CalculateWeight.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4370">
-          <caret line="237" selection-start-line="237" selection-end-line="265" selection-end-column="10" />
-          <folding>
-            <element signature="e#82#97#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Step4_FormatShp.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="12" column="76" selection-start-line="12" selection-start-column="76" selection-end-line="12" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Step2_MMSIIdentify.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1501">
-          <caret line="84" column="111" selection-start-line="84" selection-start-column="111" selection-end-line="84" selection-end-column="111" />
-          <folding>
-            <element signature="e#90#100#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dao/Data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="684">
-          <caret line="40" column="8" selection-start-line="40" selection-start-column="8" selection-end-line="40" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Step1_DataPreprocess.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
@@ -923,39 +899,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/util/Utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="25" column="16" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Step1_DataPreprocess.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-566">
-          <caret line="72" selection-start-line="72" selection-end-line="72" />
-          <folding>
-            <element signature="e#83#93#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Step3_PointIdentification.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="115" selection-start-line="115" selection-end-line="121" />
-          <folding>
-            <element signature="e#25#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dao/Data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="140" column="8" selection-start-line="140" selection-start-column="8" selection-end-line="140" selection-end-column="8" />
+        <state relative-caret-position="390">
+          <caret line="223" column="39" selection-start-line="223" selection-start-column="39" selection-end-line="223" selection-end-column="39" />
           <folding>
-            <element signature="e#4782#4960#0" />
             <element signature="e#5019#5468#0" />
             <element signature="e#9243#9476#0" />
             <element signature="e#9547#9949#0" />
@@ -963,38 +911,82 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dao/StillPointArea.py">
+    <entry file="file://$PROJECT_DIR$/util/Utils.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="759">
-          <caret line="90" column="21" selection-start-line="90" selection-start-column="21" selection-end-line="90" selection-end-column="21" />
+        <state relative-caret-position="535">
+          <caret line="39" column="24" lean-forward="true" selection-start-line="39" selection-start-column="24" selection-end-line="39" selection-end-column="24" />
           <folding>
-            <element signature="e#78#89#0" expanded="true" />
-            <element signature="e#172#307#0" />
-            <element signature="e#343#358#0" />
-            <element signature="e#408#447#0" />
-            <element signature="e#507#733#0" />
-            <element signature="e#817#1382#0" />
-            <element signature="e#1426#1490#0" />
-            <element signature="e#617#766#0" />
-            <element signature="e#750#839#0" />
-            <element signature="e#1199#1413#0" />
-            <element signature="e#2126#2217#0" />
-            <element signature="e#2284#2437#0" />
-            <element signature="e#2567#2721#0" />
-            <element signature="e#2844#3039#0" />
+            <element signature="e#78#88#0" expanded="true" />
+            <element signature="e#231#444#0" />
+            <element signature="e#471#495#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Step1_DataPreprocess.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="430">
+          <caret line="106" lean-forward="true" selection-start-line="106" selection-end-line="106" />
+          <folding>
+            <element signature="e#83#93#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2018.1/system/python_stubs/1248084663/__builtin__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="2708" column="8" selection-start-line="2708" selection-start-column="8" selection-end-line="2708" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="36" lean-forward="true" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Step3_PointIdentification.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="241" column="4" selection-start-line="241" selection-start-column="4" selection-end-line="241" selection-end-column="4" />
+          <folding>
+            <element signature="e#25#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/const/Const.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="10" column="20" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dao/Trajectory.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="55" column="51" lean-forward="true" selection-start-line="55" selection-start-column="51" selection-end-line="55" selection-end-column="51" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dao/AISPoint.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="86" column="35" lean-forward="true" selection-start-line="86" selection-start-column="35" selection-end-line="86" selection-end-column="35" />
+        <state relative-caret-position="164">
+          <caret line="171" column="37" lean-forward="true" selection-start-line="171" selection-start-column="37" selection-end-line="171" selection-end-column="37" />
           <folding>
             <element signature="e#24#34#0" expanded="true" />
-            <element signature="e#2375#2478#0" />
-            <element signature="e#2547#2772#0" />
-            <element signature="e#3459#3707#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dao/StillPointArea.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="34" column="8" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="8" />
+          <folding>
+            <element signature="e#78#88#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -3,6 +3,7 @@
 Create on 2021/1/16 21:29
 @author: Xiao Yijia
 """
+import csv
 import math
 
 
@@ -32,3 +33,10 @@ class Utils(object):
         center[0] = center[0] * 1.0 / len(point_set)
         center[1] = center[1] * 1.0 / len(point_set)
         return center
+
+    @classmethod
+    def init_output_saver(cls, file_name, output_header):
+        output_file = open(file_name, "wb")
+        output_saver = csv.writer(output_file)
+        output_saver.writerow(output_header)
+        return output_file, output_saver

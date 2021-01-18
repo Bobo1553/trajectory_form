@@ -2,11 +2,14 @@
 import csv
 import math
 
+from const.Const import Const
 from dao.DBClass import DBProcess
 from dao.Data import DetailData
 from dao.StillPointArea import StillPointArea
 
 # 输入输出参数
+from dao.Trajectory import Trajectory
+
 input_db_name = r'D:\ShipProgram\DoctorPaper\MSRData\DBData\CrudeOilTanker_MMSIIdentify.db'
 output_folder = r'D:\ShipProgram\DoctorPaper\MSRData\FileData'
 output_sp_center_csv = r'StillPointCenter.csv'
@@ -68,36 +71,29 @@ for port in port_shp:
 
 class AISPoint(object):
 
-    def __init__(self, db_name):
-        self.source_db = DBProcess(db_name)
+    def __init__(self, db_name, ):
+        self.source_db = DBProcess(db_name, )
 
         self.still_point_area = StillPointArea()
-        self.no_still_point_set = []
-        self.trajectory_point_set = []
+        self.trajectory = Trajectory()
 
-        self.output_file = None
-        self.output_saver = None
+        self.ais_state = Const.STILL
 
-    def extract_still_point(self, sql, output_file_name, output_header):
-        self.prepare_deal(sql, output_file_name, output_header)
+    def extract_still_point(self, sql, sp_file_name, sp_header, trajectory_file_name, trajectory_header,
+                            trajectory_txt_name):
+        self.prepare_deal(sql, sp_file_name, sp_header, trajectory_file_name, trajectory_header, trajectory_txt_name)
         self.between_line_transaction_deal()
         self.finish()
 
-    def prepare_deal(self, sql, output_file_name, output_header):
+    def prepare_deal(self, sql, sp_file_name, sp_header, trajectory_file_name, trajectory_header, trajectory_txt_name):
         self.start_transaction(sql)
-        self.init_output_saver(output_file_name, output_header)
+        self.still_point_area.init_output_saver(sp_file_name, sp_header)
+        self.trajectory.init_output_saver(trajectory_file_name, trajectory_header, trajectory_txt_name)
 
     def start_transaction(self, sql):
         print("starting fetch data!")
         self.source_db.run_sql(sql)
         print("fetch data finished!")
-
-    def init_output_saver(self, file_name, output_header):
-        if self.output_file is not None:
-            self.output_file.close()
-        self.output_file = open(file_name, "wb")
-        self.output_saver = csv.writer(self.output_file)
-        self.output_saver.writerow(output_header)
 
     def between_line_transaction_deal(self, ):
         self.init_value()
@@ -118,17 +114,18 @@ class AISPoint(object):
 
         self.final_deal_situation()
 
+    def init_value(self):
+        self.still_point_area.init_value()
+        self.trajectory.init_value()
+        # self.no_still_point_set = []
+        # self.trajectory_point_set = []
+
     def fetch_data(self, ):
         row = self.source_db.dbcursor.fetchone()
         if row is not None:
             return DetailData(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10],
                               row[11], )
         return None
-
-    def init_value(self):
-        self.still_point_area.init_value()
-        self.no_still_point_set = []
-        self.trajectory_point_set = []
 
     def has_next_data(self, after_info):
         return after_info
@@ -141,7 +138,7 @@ class AISPoint(object):
         self.init_value()
 
     def judge_second_situation(self, before_ship, after_ship):
-        return self.is_still_point(before_ship, after_ship) and after_ship.judge_in_ocean(port_list)
+        return self.is_still_point(before_ship, after_ship) and after_ship.judge_in_shp(port_list)
 
     def is_still_point(self, before_ship, after_ship):
         return (after_ship.speed < sp_speed_threshold and
@@ -149,25 +146,53 @@ class AISPoint(object):
                 before_ship.calculate_distance_to_item(after_ship) < sp_distance_threshold)
 
     def deal_second_situation(self, after_ship, ):
-        self.still_point_area.append_value(after_ship)
+        if self.ais_state == Const.STILL:
+            self.deal_still_situation(after_ship)
+        else:
+            self.deal_moving_to_still_situation(after_ship)
+
+    def deal_still_situation(self, ship_point):
+        self.still_point_area.append_value(ship_point)
+
+    def deal_moving_to_still_situation(self, ship_point):
+        self.ais_state = Const.STILL
+        self.still_point_area.append_value(ship_point)
 
     def deal_default_situation(self, ):
-        self.export_temp_still_point_set()
+        if self.ais_state == Const.MOVING:
+            self.deal_moving_situation()
+        else:
+            self.deal_still_to_moving_situation()
+        # self.export_before_before_still_point_set()
 
-    def export_temp_still_point_set(self):
-        if self.still_point_area.merge_still_point_set():
+    def deal_moving_situation(self, ship_point):
+        self.trajectory.append_value(ship_point)
+
+    def deal_still_to_moving_situation(self, ship_point):
+        if self.still_point_area.merge_still_point_set(self.trajectory, sp_combine_time_threshold,
+                                                       sp_combine_distance_threshold, ):
             return
 
-        self.export_temp_still_point_set()
+        if self.still_point_area.is_suitable_point_set(self.still_point_area.temp_still_point_set, sp_point_threshold,
+                                                       sp_still_time_threshold):
+            self.still_point_area.export_temp_still_point_set()
+            self.trajectory.export_temp_trajectory_point(self.still_point_area.temp_still_point_set[:1])
+        else:
+            self.trajectory.update_temp_trajectory_point(self.still_point_area)
 
     def final_deal_situation(self, ):
-        self.still_point_area.merge_still_point_set()
-        self.still_point_area.clean_all_dirty_set()
-        self.still_point_area.export_all_point_set(self.output_saver)
+        self.still_point_area.merge_still_point_set(self.trajectory, sp_combine_time_threshold,
+                                                    sp_combine_distance_threshold)
+        self.still_point_area.export_all_point_set(sp_point_threshold, sp_still_time_threshold)
 
     def finish(self):
-        self.output_file.close()
+        self.still_point_area.finish()
+        self.trajectory.finish()
 
 
 if __name__ == '__main__':
-    pass
+    sql = ""
+    sp_header = ["still_point_index", "mark", "mmsi", "imo", "vessel_name", "vessel_type", "length", "width",
+                 "longitude", "latitude", "draft", "speed", "utc"]
+    ais_point = AISPoint(input_db_name)
+    ais_point.extract_still_point(sql, output_still_point_csv, sp_header)

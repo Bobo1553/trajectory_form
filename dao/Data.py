@@ -132,15 +132,9 @@ class MovingData(Data):
         else:
             return False
 
-    def judge_near_land(self, land_list):
-        for land in land_list:
-            if land.contains(self.ship_position):
-                return True
-        return False
-
-    def judge_in_ocean(self, ocean_list):
-        for ocean in ocean_list:
-            if ocean.contains(self.ship_position):
+    def judge_in_shp(self, shp_list):
+        for shp_item in shp_list:
+            if shp_item.contains(self.ship_position):
                 return True
         return False
 

@@ -201,7 +201,7 @@ def is_near_coastline(after_ship):
     :param after_ship:
     :return:
     """
-    return after_ship.judge_in_ocean(ocean_list)
+    return after_ship.judge_in_shp(ocean_list)
 
 
 def get_average_draught(point_set):
