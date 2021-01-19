@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-import csv
 import math
+
+import arcpy
 
 from const.Const import Const
 from dao.DBClass import DBProcess
@@ -11,59 +12,37 @@ from dao.StillPointArea import StillPointArea
 from dao.Trajectory import Trajectory
 
 input_db_name = r'D:\ShipProgram\DoctorPaper\MSRData\DBData\CrudeOilTanker_MMSIIdentify.db'
-output_folder = r'D:\ShipProgram\DoctorPaper\MSRData\FileData'
-output_sp_center_csv = r'StillPointCenter.csv'
-output_still_point_csv = r'StillPoint.csv'
-output_route_point_csv_name = r'RoutePoint.csv'
-output_rp_center_csv_name = r'RoutePointCenter.csv'
-output_change_point_csv_name = r'ChangePoint.csv'
-output_trajectory_txt_name = r'ShipTrajectoryLine.txt'
+sql = ('select mark, mmsi, imo, vessel_name, vessel_type, length, width, longitude, latitude, draught, speed, utc '
+       'from CrudeOilTankerFinal order by mmsi, mark, utc')
+
+test_sql = ('select mark, mmsi, imo, vessel_name, vessel_type, length, width, longitude, latitude, draught, speed, utc '
+            'from CrudeOilTankerFinal where MMSI = 209292000 order by mmsi, mark, utc')
+
+output_sp_csv = r"D:\ShipProgram\DoctorPaper\MSRData\FileData\StillPoint.csv"
+output_sp_header = ["sp_index", "mark", "mmsi", "imo", "vessel_name", "vessel_type", "length", "width",
+                    "longitude", "latitude", "draft", "speed", "utc"]
+output_trajectory_csv = r"D:\ShipProgram\DoctorPaper\MSRData\FileData\TrajectoryInfo.csv"
+output_trajectory_header = ["trajectory_index", "mark", "mmsi", "imo", "vessel_name", "vessel_type", "length", "width"]
+output_trajectory_txt_name = r"D:\ShipProgram\DoctorPaper\MSRData\FileData\ShipTrajectory.txt"
 
 # 海岸线5km的图层
-ocean_shp_name = r'D:\ShipProgram\DoctorPaper\MSRData\ShpData\coastlineBuffer5.shp'  # 输入陆地五公里缓冲区的图层
-water_deep_raster = r'D:\GeoData\waterDepth\waterDepth.tif'
-
-input_table_name = 'CrudeOilTankerFinal'
+port_shp_name = r'D:\ShipProgram\DoctorPaper\MSRData\ShpData\coastlineBuffer5.shp'  # 输入陆地五公里缓冲区的图层
 
 # region 静止点参数
 # 单位为节
-sp_speed_threshold = 0.5
+sp_speed_threshold = 1
 # 单位为秒
-sp_still_time_threshold = 21600
-sp_time_gaps_threshold = 3600
+sp_still_time_threshold = 7200
+sp_time_gaps_threshold = 1800
 sp_combine_time_threshold = 3600
 # 单位为km
-sp_distance_threshold = 1
-sp_combine_distance_threshold = 1
+sp_distance_threshold = 2
+sp_combine_distance_threshold = 2
 # 单位为点的个数
-sp_point_threshold = 3
-# 中心点处的水深
-sp_center_water_deep = -1000
+sp_point_threshold = 10
 # endregion
 
-# region 航路点参数
-# 速度阈值，单位为节
-rp_speed_threshold = 1
-# 点数阈值
-rp_point_threshold = 3
-# 航向阈值，单位为度
-rp_heading_threshold = 10
-# rp_avg_heading_threshold_set = [0, 1, 2, 3, 4, 5]
-# rp_acceleration_threshold = 0
-# 中心点处的水深
-rp_center_water_deep = -5000
-# endregion
-
-# region 吃水变化点参数
-draft_difference_threshold = 3
-# endregion
-
-# 输出索引
-point_index = 1
-count = sp_speed_threshold
-polyline_index = 0
-
-port_shp = arcpy.da.SearchCursor(ocean_shp_name, ["SHAPE@"])
+port_shp = arcpy.da.SearchCursor(port_shp_name, ["SHAPE@"])
 port_list = []
 for port in port_shp:
     port_list.append(port[0])
@@ -117,8 +96,6 @@ class AISPoint(object):
     def init_value(self):
         self.still_point_area.init_value()
         self.trajectory.init_value()
-        # self.no_still_point_set = []
-        # self.trajectory_point_set = []
 
     def fetch_data(self, ):
         row = self.source_db.dbcursor.fetchone()
@@ -138,7 +115,7 @@ class AISPoint(object):
         self.init_value()
 
     def judge_second_situation(self, before_ship, after_ship):
-        return self.is_still_point(before_ship, after_ship) and after_ship.judge_in_shp(port_list)
+        return self.is_still_point(before_ship, after_ship)  # and after_ship.judge_in_shp(port_list)
 
     def is_still_point(self, before_ship, after_ship):
         return (after_ship.speed < sp_speed_threshold and
@@ -163,7 +140,6 @@ class AISPoint(object):
             self.deal_moving_situation(after_ship)
         else:
             self.deal_still_to_moving_situation(before_ship, after_ship)
-        # self.export_before_before_still_point_set()
 
     def deal_moving_situation(self, ship_point):
         self.trajectory.append_value(ship_point)
@@ -182,8 +158,8 @@ class AISPoint(object):
 
         if self.still_point_area.is_suitable_point_set(self.still_point_area.temp_still_point_set, sp_point_threshold,
                                                        sp_still_time_threshold):
+            self.trajectory.export_temp_trajectory_point(self.still_point_area.temp_still_point_set[0])
             self.still_point_area.export_temp_still_point_set()
-            self.trajectory.export_temp_trajectory_point(self.still_point_area.temp_still_point_set[:1])
         else:
             self.trajectory.update_temp_trajectory_point(self.still_point_area)
 
@@ -194,8 +170,8 @@ class AISPoint(object):
         while self.still_point_area.temp_still_point_set or self.still_point_area.still_point_set:
             if self.still_point_area.is_suitable_point_set(self.still_point_area.temp_still_point_set,
                                                            sp_point_threshold, sp_still_time_threshold):
+                self.trajectory.export_temp_trajectory_point(self.still_point_area.temp_still_point_set[0])
                 self.still_point_area.export_temp_still_point_set()
-                self.trajectory.export_temp_trajectory_point(self.still_point_area.temp_still_point_set[:1])
             else:
                 self.trajectory.update_temp_trajectory_point(self.still_point_area)
 
@@ -205,8 +181,6 @@ class AISPoint(object):
 
 
 if __name__ == '__main__':
-    sql = ""
-    sp_header = ["still_point_index", "mark", "mmsi", "imo", "vessel_name", "vessel_type", "length", "width",
-                 "longitude", "latitude", "draft", "speed", "utc"]
     ais_point = AISPoint(input_db_name)
-    ais_point.extract_still_point(sql, output_still_point_csv, sp_header)
+    ais_point.extract_still_point(test_sql, output_sp_csv, output_sp_header, output_trajectory_csv,
+                                  output_trajectory_header, output_trajectory_txt_name)

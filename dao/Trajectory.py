@@ -34,11 +34,13 @@ class Trajectory(object):
             return
 
         self.info_file.write("{} 0\n".format(self.index))
+        print(point_set)
         for i, point in enumerate(point_set):
-            self.info_file.write("{} {} {} 1.#QNAN 1.#QNAN\n".format(i, point.X, point.Y))
+            # print(point)
+            self.info_file.write("{} {} {} 1.#QNAN 1.#QNAN\n".format(i, point.ship_position.X, point.ship_position.Y))
 
         point = point_set[0]
-        self.output_saver.writerow([self.index, point.mmsi, point.mark, point.imo, point.vessel_name, point.vessel_type,
+        self.output_saver.writerow([self.index, point.mark, point.mmsi, point.imo, point.vessel_name, point.vessel_type,
                                     point.length, point.width])
         self.index += 1
 
