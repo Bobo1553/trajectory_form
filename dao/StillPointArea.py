@@ -3,7 +3,6 @@
 Create on 2021/1/16 16:27
 @author: Xiao Yijia
 """
-import csv
 import math
 
 from util.Utils import Utils
@@ -40,6 +39,9 @@ class StillPointArea(object):
         return False
 
     def is_suit_for_combine_set(self, before_point_set, after_point_set, time_threshold, distance_threshold):
+        if not (before_point_set and after_point_set):
+            return False
+
         time_gaps = after_point_set[0].utc - before_point_set[-1].utc
         after_point_center = Utils.get_center_point(after_point_set)
         before_point_center = Utils.get_center_point(before_point_set)
@@ -54,11 +56,6 @@ class StillPointArea(object):
 
         return (len(still_point_set) > point_threshold and
                 math.fabs(still_point_set[-1].utc - still_point_set[0].utc) > time_threshold)
-
-    # def export_still_point_set(self, point_threshold, time_threshold, trajectory):
-    #     if self.export_point_set(self.still_point_set, point_threshold, time_threshold):
-    #         trajectory.export_all_trajectory_point()
-    #     self.still_point_set = []
 
     def export_temp_still_point_set(self, ):
         self.export_point_set(self.temp_still_point_set)
