@@ -18,13 +18,11 @@ class StillPointArea(object):
         self.index = 0
         self.still_point_set = []
         self.temp_still_point_set = []
-        self.before_before_still_point_set = []
 
     def init_value(self):
         self.index = 0
         self.still_point_set = []
         self.temp_still_point_set = []
-        self.before_before_still_point_set = []
 
     def init_output_saver(self, sp_file_name, sp_header):
         self.output_file, self.output_saver = Utils.init_output_saver(sp_file_name, sp_header)

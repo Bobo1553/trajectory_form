@@ -53,9 +53,12 @@ class Trajectory(object):
         self.temp_point_set = self.point_set
         self.point_set = []
 
-    def update_temp_trajectory_point(self, sp_set):
-        self.temp_point_set += sp_set + self.point_set
+    def update_temp_trajectory_point(self, sp_area):
+        self.temp_point_set += sp_area.temp_still_point_set + self.point_set
         self.point_set = []
+
+        sp_area.temp_still_point_set = sp_area.still_point_set
+        sp_area.still_point_set = []
 
     def is_suitable_point_set(self, point_set):
         return len(point_set) != 0

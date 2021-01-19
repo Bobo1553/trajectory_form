@@ -169,6 +169,13 @@ class AISPoint(object):
         self.trajectory.append_value(ship_point)
 
     def deal_still_to_moving_situation(self, ship_point):
+        self.ais_state = Const.MOVING
+
+        self.merge_and_export_still_point_and_trajectory()
+
+        self.trajectory.point_set = [before_ship, after_ship]
+
+    def merge_and_export_still_point_and_trajectory(self):
         if self.still_point_area.merge_still_point_set(self.trajectory, sp_combine_time_threshold,
                                                        sp_combine_distance_threshold, ):
             return
@@ -179,6 +186,8 @@ class AISPoint(object):
             self.trajectory.export_temp_trajectory_point(self.still_point_area.temp_still_point_set[:1])
         else:
             self.trajectory.update_temp_trajectory_point(self.still_point_area)
+
+        self
 
     def final_deal_situation(self, ):
         self.still_point_area.merge_still_point_set(self.trajectory, sp_combine_time_threshold,
