@@ -11,35 +11,40 @@ from dao.StillPointArea import StillPointArea
 # 输入输出参数
 from dao.Trajectory import Trajectory
 
-input_db_name = r'D:\ShipProgram\DoctorPaper\MSRData\DBData\CrudeOilTanker_MMSIIdentify.db'
+input_db_name = r'D:\ShipProgram\DoctorPaper\MSRData\TestData\bulk.db'
+table_name = 'Tracks'
 sql = ('select mark, mmsi, imo, vessel_name, vessel_type, length, width, longitude, latitude, draught, speed, utc '
-       'from CrudeOilTankerFinal order by mmsi, mark, utc')
+       'from {} order by mmsi, mark, utc'.format(table_name))
 
 test_sql = ('select mark, mmsi, imo, vessel_name, vessel_type, length, width, longitude, latitude, draught, speed, utc '
-            'from CrudeOilTankerFinal where MMSI = 209292000 order by mmsi, mark, utc')
+            'from {} where MMSI = 209292000 order by mmsi, mark, utc'.format(table_name))
+# 港口图层
+port_shp_name = r'D:\ShipProgram\DoctorPaper\MSRData\TestData\coastline_area_10dis.shp'  # 输入港口图层
 
-output_sp_csv = r"D:\ShipProgram\DoctorPaper\MSRData\FileData\StillPoint.csv"
+output_sp_csv = r"D:\ShipProgram\DoctorPaper\MSRData\TestData\StillPoint.csv"
 output_sp_header = ["sp_index", "mark", "mmsi", "imo", "vessel_name", "vessel_type", "length", "width",
                     "longitude", "latitude", "draft", "speed", "utc"]
-output_trajectory_csv = r"D:\ShipProgram\DoctorPaper\MSRData\FileData\TrajectoryInfo.csv"
+output_trajectory_csv = r"D:\ShipProgram\DoctorPaper\MSRData\TestData\TrajectoryInfo.csv"
 output_trajectory_header = ["trajectory_index", "mark", "mmsi", "imo", "vessel_name", "vessel_type", "length", "width"]
-output_trajectory_txt_name = r"D:\ShipProgram\DoctorPaper\MSRData\FileData\ShipTrajectory.txt"
-
-# 海岸线5km的图层
-port_shp_name = r'D:\ShipProgram\DoctorPaper\MSRData\ShpData\coastlineBuffer5.shp'  # 输入陆地五公里缓冲区的图层
+output_trajectory_txt_name = r"D:\ShipProgram\DoctorPaper\MSRData\TestData\ShipTrajectory.txt"
 
 # region 静止点参数
-# 单位为节
+# 判断是否为停留点的速度阈值，单位为节
 sp_speed_threshold = 1
-# 单位为秒
-sp_still_time_threshold = 7200
+# 判断是否为停留点的时间间隔阈值，单位为秒
 sp_time_gaps_threshold = 1800
-sp_combine_time_threshold = 3600
-# 单位为km
+# 判断是否为停留点的距离阈值，单位为km
 sp_distance_threshold = 2
-sp_combine_distance_threshold = 2
-# 单位为点的个数
-sp_point_threshold = 10
+
+# 判断是否合并相邻停留区的时间间隔阈值，单位为秒
+sp_combine_time_threshold = 0
+# 判断是否合并相邻停留区的距离阈值，单位为km
+sp_combine_distance_threshold = 0
+
+# 判断是否保留停留区域的持续时长阈值，单位为秒
+sp_still_time_threshold = 0
+# 判断是否保留停留区的个数，单位为点的个数
+sp_point_threshold = 0
 # endregion
 
 port_shp = arcpy.da.SearchCursor(port_shp_name, ["SHAPE@"])
@@ -115,7 +120,7 @@ class AISPoint(object):
         self.init_value()
 
     def judge_second_situation(self, before_ship, after_ship):
-        return self.is_still_point(before_ship, after_ship)  # and after_ship.judge_in_shp(port_list)
+        return self.is_still_point(before_ship, after_ship) and after_ship.judge_in_shp(port_list)
 
     def is_still_point(self, before_ship, after_ship):
         return (after_ship.speed < sp_speed_threshold and
@@ -182,5 +187,5 @@ class AISPoint(object):
 
 if __name__ == '__main__':
     ais_point = AISPoint(input_db_name)
-    ais_point.extract_still_point(test_sql, output_sp_csv, output_sp_header, output_trajectory_csv,
+    ais_point.extract_still_point(sql, output_sp_csv, output_sp_header, output_trajectory_csv,
                                   output_trajectory_header, output_trajectory_txt_name)

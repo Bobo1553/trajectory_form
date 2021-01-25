@@ -34,7 +34,6 @@ class Trajectory(object):
             return
 
         self.info_file.write("{} 0\n".format(self.index))
-        print(point_set)
         for i, point in enumerate(point_set):
             # print(point)
             self.info_file.write("{} {} {} 1.#QNAN 1.#QNAN\n".format(i, point.ship_position.X, point.ship_position.Y))
