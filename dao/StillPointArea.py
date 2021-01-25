@@ -19,7 +19,6 @@ class StillPointArea(object):
         self.temp_still_point_set = []
 
     def init_value(self):
-        self.index = 0
         self.still_point_set = []
         self.temp_still_point_set = []
 
