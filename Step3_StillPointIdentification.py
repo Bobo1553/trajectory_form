@@ -39,6 +39,8 @@ sp_speed_threshold = 1
 sp_time_gaps_threshold = 172800
 # 判断是否为停留点的距离阈值，单位为km
 sp_distance_threshold = 2
+# 判断是否为停留点的时候，是否考虑空间位置
+is_consider_position = False
 
 # 判断是否合并相邻停留区的时间间隔阈值，单位为秒
 sp_combine_time_threshold = 3600
@@ -79,8 +81,7 @@ class AISPoint(object):
         self.start_transaction(sql)
         self.still_point_area.init_output_saver(sp_file_name, sp_header)
         self.trajectory.init_output_saver(trajectory_file_name, trajectory_header, trajectory_txt_name,
-                                          trajectory_point_name,
-                                          trajectory_point_header, )
+                                          trajectory_point_name, trajectory_point_header, )
 
     def start_transaction(self, sql):
         print("starting fetch data!")
@@ -93,10 +94,10 @@ class AISPoint(object):
         before_ship = self.fetch_data()
         after_ship = self.fetch_data()
 
-        print("deal with the ship with mmsi: {}".format(before_ship.mmsi))
+        print("deal the ship with mmsi: {}".format(before_ship.mmsi))
         while self.has_next_data(after_ship):
             if self.judge_first_situation(before_ship, after_ship):
-                print("deal with the ship with mmsi: {}".format(after_ship.mmsi))
+                print("deal the ship with mmsi: {}".format(after_ship.mmsi))
                 self.deal_first_situation()
             elif self.judge_second_situation(before_ship, after_ship):
                 self.deal_second_situation(before_ship, after_ship, )
@@ -130,7 +131,8 @@ class AISPoint(object):
         self.init_value()
 
     def judge_second_situation(self, before_ship, after_ship):
-        return self.is_still_point(before_ship, after_ship)  # and after_ship.judge_in_shp(port_list)
+        return (self.is_still_point(before_ship, after_ship) and
+                (not is_consider_position or after_ship.judge_in_shp(port_list)))
 
     def is_still_point(self, before_ship, after_ship):
         return (after_ship.speed < sp_speed_threshold and

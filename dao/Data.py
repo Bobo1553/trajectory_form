@@ -106,7 +106,7 @@ class MovingData(Data):
         if len(str(utc)) == 14:
             self.utc = time_convert(str(utc))
         else:
-            self.utc = utc
+            self.utc = int(utc)
 
     def export_to_csv(self):
         data = Data.export_to_csv(self)

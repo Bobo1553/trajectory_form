@@ -24,8 +24,11 @@ class Trajectory(object):
                           trajectory_point_header):
         self.info_file, self.info_saver = Utils.init_output_saver(trajectory_file_name, trajectory_header)
         self.point_file, self.point_saver = Utils.init_output_saver(trajectory_point_name, trajectory_point_header)
-        self.line_file = open(trajectory_txt_name, "w")
-        self.line_file.write("Polyline\n")
+        if not trajectory_txt_name:
+            self.line_file = None
+        else:
+            self.line_file = open(trajectory_txt_name, "w")
+            self.line_file.write("Polyline\n")
 
     def init_value(self):
         self.temp_point_set = []
@@ -51,20 +54,29 @@ class Trajectory(object):
         self.index += 1
 
     def export_trajectory_info(self, point, sp_index):
+        if not self.info_saver:
+            return
+
         self.info_saver.writerow([self.index, sp_index, point.mark, point.mmsi, point.imo, point.vessel_name,
                                   point.vessel_type, point.length, point.width])
 
     def export_trajectory_line(self, point_set):
+        if not self.line_file:
+            return
+
         self.line_file.write("{} 0\n".format(self.index))
         for i, point in enumerate(point_set):
             self.line_file.write("{} {} {} 1.#QNAN 1.#QNAN\n".format(i, point.ship_position.X, point.ship_position.Y))
 
     def export_trajectory_point(self, point_set, sp_index):
+        if not self.point_saver:
+            return
+
         for point in point_set[1:-1]:
             self.point_saver.writerow([self.index, sp_index] + point.export_to_csv())
 
     def update_temp_trajectory_point(self, sp_area):
-        self.temp_point_set += sp_area.temp_still_point_set + self.point_set
+        self.temp_point_set += sp_area.temp_still_point_set + self.point_set[1:]
         self.point_set = []
 
         sp_area.temp_still_point_set = sp_area.still_point_set

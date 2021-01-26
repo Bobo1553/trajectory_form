@@ -5,6 +5,7 @@ Create on 2021/1/16 21:29
 """
 import csv
 import math
+import os
 
 
 class Utils(object):
@@ -36,7 +37,26 @@ class Utils(object):
 
     @classmethod
     def init_output_saver(cls, file_name, output_header):
+        if not file_name:
+            return None, None
+
         output_file = open(file_name, "wb")
         output_saver = csv.writer(output_file)
         output_saver.writerow(output_header)
         return output_file, output_saver
+
+    @classmethod
+    def init_input_reader(cls, file_name):
+        input_file = open(file_name)
+        input_reader = csv.reader(input_file)
+        return input_file, input_reader
+
+    @classmethod
+    def check_file_path_and_create(cls, check_file):
+        path, filename = os.path.split(check_file)
+        Utils.check_path(path)
+
+    @classmethod
+    def check_path(cls, file_path):
+        if not os.path.exists(file_path):
+            os.makedirs(file_path)
