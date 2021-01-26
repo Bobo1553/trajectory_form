@@ -31,7 +31,7 @@ class StillPointArea(object):
     def merge_still_point_set(self, trajectory, time_threshold, distance_threshold, ):
         if self.is_suit_for_combine_set(self.temp_still_point_set, self.still_point_set, time_threshold,
                                         distance_threshold, trajectory):
-            self.temp_still_point_set += trajectory.point_set + self.still_point_set
+            self.temp_still_point_set += trajectory.point_set[1:] + self.still_point_set
             self.still_point_set = []
             trajectory.point_set = self.temp_still_point_set[-1:]
             return True
