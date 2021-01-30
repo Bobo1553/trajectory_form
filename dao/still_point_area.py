@@ -5,7 +5,7 @@ Create on 2021/1/16 16:27
 """
 import math
 
-from util.Utils import Utils
+from util.utils import Utils
 
 
 class StillPointArea(object):

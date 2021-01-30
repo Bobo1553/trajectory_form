@@ -3,9 +3,9 @@
 Create on 2021/1/26 10:11
 @author: Xiao Yijia
 """
-from dao.AISReader import AISReader
-from dao.StillPointArea import StillPointArea
-from dao.Trajectory import Trajectory
+from dao.ais_reader import AISReader
+from dao.still_point_area import StillPointArea
+from dao.trajectory import Trajectory
 
 # input
 input_sp_file_name = r"D:\ShipProgram\DoctorPaper\MSRData\TestData\StillPoint.csv"

@@ -9,8 +9,8 @@ import os
 
 import arcpy
 
-from dao.DBClass import DBProcess
-from const.ConstSQL import ConstSQL
+from dao.common_db import DBProcess
+from const.const_sql import ConstSQL
 
 
 class ErrorCount(object):

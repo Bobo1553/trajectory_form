@@ -208,6 +208,9 @@ class MovingData(Data):
                 # print("Shouldn't be same location!")
         return result * 180 / math.pi
 
+    def update_position(self, lon, lat):
+        self.ship_position = arcpy.Point(lon, lat)
+
 
 class DetailData(MovingData):
 

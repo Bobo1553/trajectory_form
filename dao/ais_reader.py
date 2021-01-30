@@ -5,9 +5,9 @@ Create on 2021/1/26 10:20
 """
 import copy
 
-from const.Const import Const
-from dao.Data import DetailData
-from util.Utils import Utils
+from const.const import Const
+from dao.data import DetailData
+from util.utils import Utils
 
 
 class AISReader(object):

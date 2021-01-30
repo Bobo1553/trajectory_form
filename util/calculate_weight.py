@@ -9,7 +9,7 @@ import datetime
 import arcpy
 import time
 
-from dao.Data import DetailData
+from dao.data import DetailData
 
 import csv
 import math

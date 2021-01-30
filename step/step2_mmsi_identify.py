@@ -11,8 +11,8 @@ import math
 
 import arcpy
 
-from dao.DBClass import DBProcess
-from dao.Data import DetailData
+from dao.common_db import DBProcess
+from dao.data import DetailData
 
 source_db_name = r'D:\ShipProgram\DoctorPaper\MSRData\DBData\Test\CrudeOilTanker2017.db'  # 数据处理后的油轮数据库
 speed_threshold = 18  # 此处修改为18，为共用MMSI识别的速度阈值

@@ -3,7 +3,7 @@
 Create on 2021/1/18 17:10
 @author: Xiao Yijia
 """
-from util.Utils import Utils
+from util.utils import Utils
 
 
 class Trajectory(object):

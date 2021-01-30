@@ -3,13 +3,13 @@ import math
 
 import arcpy
 
-from const.Const import Const
-from dao.DBClass import DBProcess
-from dao.Data import DetailData
-from dao.StillPointArea import StillPointArea
+from const.const import Const
+from dao.common_db import DBProcess
+from dao.data import DetailData
+from dao.still_point_area import StillPointArea
 
 # 输入输出参数
-from dao.Trajectory import Trajectory
+from dao.trajectory import Trajectory
 
 input_db_name = r'D:\ShipProgram\DoctorPaper\MSRData\TestData\bulk.db'
 table_name = 'Tracks'

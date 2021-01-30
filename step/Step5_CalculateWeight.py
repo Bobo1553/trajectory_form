@@ -2,8 +2,8 @@
 
 import csv
 
-from dao.Data import DetailData
-from util.CalculateWeight import calculate_change_dead_weight
+from dao.data import DetailData
+from util.calculate_weight import calculate_change_dead_weight
 
 input_csv_name = r'D:\ShipProgram\DoctorPaper\MSRData\FileData\ChangePoint.csv'
 output_csv_name = r'D:\ShipProgram\DoctorPaper\MSRData\FileData\ChangePointWithChangeWeight.csv'

@@ -6,10 +6,10 @@ Created on Thu Oct 11 10:05:33 2018
 """
 import csv
 import os
-from dao.DBClass import DBProcess
+from dao.common_db import DBProcess
 import datetime
 
-from const.ConstSQL import ConstSQL
+from const.const_sql import ConstSQL
 
 db_file_path = r'F:\NewShipsDB2017'
 # temp_db_file_path = r'D:\ShipProgram\MainRouteExtraction2020\MSRData\DBData\Temp'

@@ -3,6 +3,7 @@
 Create on 2021/1/16 21:29
 @author: Xiao Yijia
 """
+import arcgisscripting
 import csv
 import math
 import os
@@ -60,3 +61,8 @@ class Utils(object):
     def check_path(cls, file_path):
         if not os.path.exists(file_path):
             os.makedirs(file_path)
+
+    @classmethod
+    def create_feature_from_file(cls, input_txt_name, output_shp_name, ):
+        gp = arcgisscripting.create()
+        gp.CreateFeaturesFromTextFile(input_txt_name, '.', output_shp_name, "#")
