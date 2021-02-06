@@ -40,7 +40,7 @@ sp_time_gaps_threshold = 172800
 # 判断是否为停留点的距离阈值，单位为km
 sp_distance_threshold = 2
 # 判断是否为停留点的时候，是否考虑空间位置
-is_consider_position = False
+is_consider_position = True
 
 # 判断是否合并相邻停留区的时间间隔阈值，单位为秒
 sp_combine_time_threshold = 3600
