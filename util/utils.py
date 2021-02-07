@@ -41,6 +41,8 @@ class Utils(object):
         if not file_name:
             return None, None
 
+        Utils.check_file_path_and_create(file_name)
+
         output_file = open(file_name, "wb")
         output_saver = csv.writer(output_file)
         output_saver.writerow(output_header)
@@ -66,3 +68,10 @@ class Utils(object):
     def create_feature_from_file(cls, input_txt_name, output_shp_name, ):
         gp = arcgisscripting.create()
         gp.CreateFeaturesFromTextFile(input_txt_name, '.', output_shp_name, "#")
+
+    @classmethod
+    def get_average_value(cls, point_set, field_name):
+        total = 0
+        for point in point_set:
+            total += float(point.__dict__[field_name])
+        return total * 1.0 / len(point_set)

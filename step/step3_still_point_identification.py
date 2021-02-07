@@ -11,7 +11,7 @@ from dao.still_point_area import StillPointArea
 # 输入输出参数
 from dao.trajectory import Trajectory
 
-input_db_name = r'D:\ShipProgram\DoctorPaper\MSRData\TestData\bulk.db'
+input_db_name = r'D:\ShipProgram\DoctorPaper\MSRData\TestData\step2\bulk.db'
 table_name = 'Tracks'
 sql = ('select mark, mmsi, imo, vessel_name, vessel_type, length, width, longitude, latitude, draught, speed, utc '
        'from {} order by mmsi, mark, utc'.format(table_name))
@@ -19,16 +19,16 @@ sql = ('select mark, mmsi, imo, vessel_name, vessel_type, length, width, longitu
 test_sql = ('select mark, mmsi, imo, vessel_name, vessel_type, length, width, longitude, latitude, draught, speed, utc '
             'from {} where mmsi = 209292000 order by mmsi, mark, utc'.format(table_name))
 # 港口图层
-port_shp_name = r'D:\ShipProgram\DoctorPaper\MSRData\TestData\coastline_area_10dis.shp'  # 输入港口图层
+port_shp_name = r'D:\ShipProgram\DoctorPaper\MSRData\TestData\shp\coastline_area_10dis.shp'  # 输入港口图层
 
-output_sp_csv = r"D:\ShipProgram\DoctorPaper\MSRData\TestData\StillPoint.csv"
+output_sp_csv = r"D:\ShipProgram\DoctorPaper\MSRData\TestData\step3\StillPoint.csv"
 output_sp_header = ["sp_index", "mark", "mmsi", "imo", "vessel_name", "vessel_type", "length", "width",
                     "longitude", "latitude", "draft", "speed", "utc"]
-output_trajectory_csv = r"D:\ShipProgram\DoctorPaper\MSRData\TestData\TrajectoryInfo.csv"
+output_trajectory_csv = r"D:\ShipProgram\DoctorPaper\MSRData\TestData\step3\TrajectoryInfo.csv"
 output_trajectory_header = ["trajectory_index", "sp_index", "mark", "mmsi", "imo", "vessel_name", "vessel_type",
                             "length", "width"]
-output_trajectory_txt_name = r"D:\ShipProgram\DoctorPaper\MSRData\TestData\ShipTrajectory.txt"
-output_trajectory_point_name = r"D:\ShipProgram\DoctorPaper\MSRData\TestData\TrajectoryPoint.csv"
+output_trajectory_txt_name = r"D:\ShipProgram\DoctorPaper\MSRData\TestData\step3\ShipTrajectory.txt"
+output_trajectory_point_name = r"D:\ShipProgram\DoctorPaper\MSRData\TestData\step3\TrajectoryPoint.csv"
 output_trajectory_point_header = ["trajectory_index", "sp_index", "mark", "mmsi", "imo", "vessel_name", "vessel_type",
                                   "length", "width", "longitude", "latitude", "draft", "speed", "utc"]
 
@@ -40,7 +40,7 @@ sp_time_gaps_threshold = 172800
 # 判断是否为停留点的距离阈值，单位为km
 sp_distance_threshold = 2
 # 判断是否为停留点的时候，是否考虑空间位置
-is_consider_position = True
+is_consider_position = False
 
 # 判断是否合并相邻停留区的时间间隔阈值，单位为秒
 sp_combine_time_threshold = 3600

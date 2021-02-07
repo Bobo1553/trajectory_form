@@ -98,10 +98,10 @@ class StaticData(Data):
 
 class MovingData(Data):
 
-    def __init__(self, mark, mmsi, longitude, latitude, draught, speed, utc):
+    def __init__(self, mark, mmsi, longitude, latitude, draft, speed, utc):
         Data.__init__(self, mark, mmsi)
         self.ship_position = arcpy.Point(longitude, latitude)
-        self.draught = draught
+        self.draft = draft
         self.speed = speed
         if len(str(utc)) == 14:
             self.utc = time_convert(str(utc))
@@ -112,22 +112,22 @@ class MovingData(Data):
         data = Data.export_to_csv(self)
         data.append(self.ship_position.X)
         data.append(self.ship_position.Y)
-        data.append(self.draught)
+        data.append(self.draft)
         data.append(self.speed)
         data.append(self.utc)
         return data
 
     def judge_repeat(self, data):
         if (Data.judge_repeat(self, data) and self.ship_position.X == data.ship_position.X and self.ship_position.Y ==
-                data.ship_position.Y and self.draught == data.draught and self.speed == data.speed and
+                data.ship_position.Y and self.draft == data.draft and self.speed == data.speed and
                 self.utc == data.utc):
             return True
         else:
             return False
 
-    def moving_data_judge_repeat(self, mark, mmsi, longitude, latitude, draught, speed, utc):
+    def moving_data_judge_repeat(self, mark, mmsi, longitude, latitude, draft, speed, utc):
         if (Data.base_data_judge_repeat(self, mark, mmsi) and self.ship_position.X == longitude and self.ship_position.Y
-                == latitude and self.draught == draught and self.speed == speed and self.utc == utc):
+                == latitude and self.draft == draft and self.speed == speed and self.utc == utc):
             return True
         else:
             return False
@@ -141,7 +141,7 @@ class MovingData(Data):
     def set_value_by_item(self, data):
         Data.set_value_by_item(self, data)
         self.ship_position = data.ship_position
-        self.draught = data.draught
+        self.draft = data.draft
         self.speed = data.speed
         self.utc = data.utc
 
@@ -215,8 +215,8 @@ class MovingData(Data):
 class DetailData(MovingData):
 
     def __init__(self, mark, mmsi, imo, vessel_name, vessel_type, length, width, longitude,
-                 latitude, draught, speed, utc):
-        MovingData.__init__(self, mark, mmsi, longitude, latitude, draught, speed, utc)
+                 latitude, draft, speed, utc):
+        MovingData.__init__(self, mark, mmsi, longitude, latitude, draft, speed, utc)
         self.imo = imo
         self.vessel_name = vessel_name
         self.vessel_type = vessel_type
@@ -232,7 +232,7 @@ class DetailData(MovingData):
         data.append(self.width)
         data.append(self.ship_position.X)
         data.append(self.ship_position.Y)
-        data.append(self.draught)
+        data.append(self.draft)
         data.append(self.speed)
         data.append(self.utc)
         return data
@@ -242,8 +242,8 @@ class DetailData(MovingData):
                 data.vessel_type and self.imo == data.imo and self.length == data.length and self.width == data.width)
 
     def detail_data_judge_repeat(self, mark, mmsi, imo, vessel_name, vessel_type, length, width, longitude, latitude,
-                                 draught, speed, utc):
-        return (MovingData.moving_data_judge_repeat(self, mark, mmsi, longitude, latitude, draught, speed, utc) and
+                                 draft, speed, utc):
+        return (MovingData.moving_data_judge_repeat(self, mark, mmsi, longitude, latitude, draft, speed, utc) and
                 self.imo == imo and self.vessel_name == vessel_name and self.vessel_type == vessel_type and
                 self.length == length and self.width == width)
 
@@ -254,80 +254,6 @@ class DetailData(MovingData):
         self.vessel_type = data.vessel_type
         self.length = data.length
         self.width = data.width
-
-
-class DetailDataWithDeadWeight(DetailData):
-    def __init__(self, mark, mmsi, imo, vessel_name, vessel_type, length, width, longitude,
-                 latitude, draught, speed, utc, dead_weight, gross_weight, ):
-        DetailData.__init__(self, mark, mmsi, imo, vessel_name, vessel_type, length, width, longitude, latitude,
-                            draught, speed, utc)
-        self.dead_weight = dead_weight
-        self.gross_weight = gross_weight
-
-    def export_to_csv(self):
-        data = DetailData.export_to_csv(self)
-        data.append(self.dead_weight)
-        data.append(self.gross_weight)
-        return data
-
-    def judge_repeat(self, data):
-        return DetailData.judge_repeat(self, data) and self.dead_weight == data.dead_weight and \
-               self.gross_weight == data.gross_weight
-
-
-class DraughtData(DetailData):
-
-    def __init__(self, mark, mmsi, imo, vessel_name, vessel_type, length, width, dead_weight, gross_weight, longitude,
-                 latitude, draught, speed, utc, load_state):
-        DetailData.__init__(self, mark, mmsi, imo, vessel_name, vessel_type, length, width, dead_weight, gross_weight,
-                            longitude, latitude, draught, speed, utc)
-        self.load_state = load_state
-
-    def export_to_csv(self):
-        data = DetailData.export_to_csv(self)
-        data.append(self.load_state)
-        return data
-
-    def judge_repeat(self, data):
-        if DetailData.judge_repeat(self, data) and self.load_state == data.load_state:
-            return True
-        else:
-            return False
-
-    def draught_data_judge_repeat(self, mark, mmsi, imo, vessel_name, vessel_type, length, width, dead_weight,
-                                  gross_weight, longitude, latitude, draught, speed, utc, load_state):
-        if (DetailData.detail_data_judge_repeat(self, mark, mmsi, imo, vessel_name, vessel_type, length, width,
-                                                dead_weight, gross_weight, longitude, latitude, draught, speed, utc)
-                and self.load_state == load_state):
-            return True
-        else:
-            return False
-
-    def set_value_by_item(self, data):
-        DetailData.set_value_by_item(self, data)
-        self.load_state = data.load_state
-
-
-class DetailDataWithBuiltTime(DetailDataWithDeadWeight):
-    def __init__(self, mark, mmsi, imo, vessel_name, vessel_type, length, width, dead_weight, gross_weight, longitude,
-                 latitude, draught, speed, utc, built_time):
-        DetailDataWithDeadWeight.__init__(self, mark, mmsi, imo, vessel_name, vessel_type, length, width, dead_weight,
-                                          gross_weight, longitude, latitude, draught, speed, utc)
-        self.built_time = built_time
-
-    def export_to_csv(self):
-        data = DetailDataWithDeadWeight.export_to_csv(self)
-        data.append(self.built_time)
-        return data
-
-    def set_value_by_item(self, data):
-        DetailData.set_value_by_item(self, data)
-        self.built_time = data.built_time
-
-    def get_raster_data(self, raster_name):
-        position = str(self.ship_position.X) + " " + str(self.ship_position.Y)
-        data = arcpy.GetCellValue_management(raster_name, position).getOutput(0)
-        return data
 
 
 def time_convert(str_datetime):

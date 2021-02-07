@@ -27,6 +27,7 @@ class Trajectory(object):
         if not trajectory_txt_name:
             self.line_file = None
         else:
+            Utils.check_file_path_and_create(trajectory_txt_name)
             self.line_file = open(trajectory_txt_name, "w")
             self.line_file.write("Polyline\n")
 
