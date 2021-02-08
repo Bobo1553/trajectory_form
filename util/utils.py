@@ -45,7 +45,8 @@ class Utils(object):
 
         output_file = open(file_name, "wb")
         output_saver = csv.writer(output_file)
-        output_saver.writerow(output_header)
+        if output_header:
+            output_saver.writerow(output_header)
         return output_file, output_saver
 
     @classmethod

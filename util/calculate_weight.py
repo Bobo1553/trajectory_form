@@ -28,12 +28,31 @@ i_list = [2.28380 * 10 ** -3, -1.09810 * 10 ** -5, -1.60780 * 10 ** -6]
 j_list = [1.91075 * 10 ** -4]
 k_list = [8.50935 * 10 ** -5, -6.12293 * 10 ** -6, 5.27870 * 10 ** -8]
 m_list = [-9.9348 * 10 ** -7, 2.0816 * 10 ** -8, 9.1697 * 10 ** -10]
-cb_list = [0.79, 0.8, 0.817, 0.832, 0.843, 0.845, 0.85]
-n_list = [1.004, 1.01]
-dead_weight_list = [40000, 60000, 80000, 120000, 200000, 300000]
+k = 1
+
+# TODO 更新船舶的名称与vessel_type_main里的船舶类型名称一致
+cb_dict = {
+    'bulk carrier': 0.825,
+    'Oil And Chemical Tanker': 0.825,
+    'Other Tanker': 0.825,
+    'container ship': 0.6,
+    'General Cargo Ship': 0.65,
+    'Gas Tanker': 0.72,
+    'Ro Ro Cargo Tanker': 0.6,
+    'Fishing Vessel': 0.7,
+    'Passenger Ship': 0.6,
+    'Tug': 0.5,
+    'Pleasure Craft': 0.175,
+    None: 0.6,
+    'Specialized Cargo Ship': 0.6,
+    'Offshore Vessel': 0.6,
+    'Service Ship': 0.6,
+}
+
 # 输入文件的所在位置
 source_csv_name = r'D:\ShipProgram\NewTankerMainRouteExtraction\TestData\File\Result1224\TestChangePoint1224.csv'
 output_csv_name = r'D:\ShipProgram\NewTankerMainRouteExtraction\TestData\File\Result1224\Test.csv'
+
 # 海水盐度、温度、压力数据所在的文件夹
 day_salinity_raster_path = r'D:\地理数据\全球盐度数据_天'
 hour_temperature_raster_path = r'D:\地理数据\全球海表温度_小时'
@@ -72,7 +91,7 @@ def get_data(ship_data, data_raster_name, cell_size):
                 j += 1
             i += 1
         if count > 0:
-            return avg_data/count
+            return avg_data / count
         else:
             return 'NoData'
     else:
@@ -132,7 +151,7 @@ def get_hour_press(ship_data):
     if result == 'NoData':
         return result
     else:
-        return result/100000
+        return result / 100000
 
 
 def calculate_density_upper(ship_data):
@@ -192,20 +211,7 @@ def calculate_displace_volume(ship_data):
     :return:返回的是船舶排水重量，单位为吨
     """
     density = calculate_density(ship_data)
-    if ship_data.dead_weight < dead_weight_list[0]:
-        cb = cb_list[0]
-    elif ship_data.dead_weight < dead_weight_list[1]:
-        cb = cb_list[1]
-    elif ship_data.dead_weight < dead_weight_list[2]:
-        cb = cb_list[2]
-    elif ship_data.dead_weight < dead_weight_list[3]:
-        cb = cb_list[3]
-    elif ship_data.dead_weight < dead_weight_list[4]:
-        cb = cb_list[4]
-    elif ship_data.dead_weight < dead_weight_list[5]:
-        cb = cb_list[5]
-    else:
-        cb = cb_list[6]
+    cb = cb_dict[ship_data.vessel_type]
     displace_volume = density * ship_data.length * ship_data.width * ship_data.draught * cb
     return displace_volume
 
@@ -223,13 +229,6 @@ def calculate_change_dead_weight(before_ship_data, after_ship_data):
     after_density = calculate_density(after_ship_data)
     before_density = calculate_density(before_ship_data)
     adjust_amount = (after_density - before_density) / before_density * before_displace_volume
-    if before_ship_data.dead_weight < dead_weight_list[0]:
-        k = n_list[1]
-    elif before_ship_data.dead_weight >= dead_weight_list[5]:
-        k = n_list[0]
-    else:
-        k = (n_list[1] - n_list[0]) * (before_ship_data.dead_weight - dead_weight_list[0]) / \
-            (dead_weight_list[5] - dead_weight_list[0]) + n_list[0]
     change_dead_weight = (after_displace_volume - before_displace_volume) * k - adjust_amount
 
     return change_dead_weight
@@ -248,17 +247,15 @@ def calculate_weight():
         with open(output_csv_name, 'wb') as output_csv:
             output_csv_writer = csv.writer(output_csv)
             output_csv_writer.writerow(['mark', 'mmsi', 'imo', 'vessel_name', 'vessel_type', 'length', 'width',
-                                        'dead_weight', 'gross_weight', 'longitude', 'latitude', 'draught', 'speed',
-                                        'utc', 'line_num', 'change_weight'])
+                                        'longitude', 'latitude', 'draught', 'speed', 'utc', 'line_num',
+                                        'change_weight'])
 
         for row in source_csv_reader:
             before_ship_data = DetailData(int(row[0]), row[1], row[2], row[3], row[4], int(row[5]), int(row[6]),
-                                          int(row[7]), int(row[8]), float(row[9]), float(row[10]), float(row[11]),
-                                          float(row[12]), int(row[13]))
+                                          float(row[7]), float(row[8]), float(row[9]), float(row[10]), int(row[11]))
             row = source_csv_reader.next()
             after_ship_data = DetailData(int(row[0]), row[1], row[2], row[3], row[4], int(row[5]), int(row[6]),
-                                         int(row[7]), int(row[8]), float(row[9]), float(row[10]), float(row[11]),
-                                         float(row[12]), int(row[13]))
+                                         float(row[7]), float(row[8]), float(row[9]), float(row[10]), int(row[11]))
             change_dead_weight = calculate_change_dead_weight(before_ship_data, after_ship_data)
             output_csv_writer.writerow(before_ship_data.export_to_csv() + [row[14], change_dead_weight])
             output_csv_writer.writerow(after_ship_data.export_to_csv() + [row[14], change_dead_weight])
@@ -275,7 +272,7 @@ def main():
     calculate_weight()
     # change_utc_to_datetime()
     end_time = datetime.datetime.now()
-    print '运行所用时间为', (end_time - start_time).seconds, 's'
+    print('运行所用时间为', (end_time - start_time).seconds, 's')
     return
 
 

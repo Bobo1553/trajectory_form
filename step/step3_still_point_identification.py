@@ -13,11 +13,11 @@ from dao.trajectory import Trajectory
 
 input_db_name = r'D:\ShipProgram\DoctorPaper\MSRData\TestData\step2\bulk.db'
 table_name = 'Tracks'
-sql = ('select mark, mmsi, imo, vessel_name, vessel_type, length, width, longitude, latitude, draught, speed, utc '
+sql = ('select mark, mmsi, imo, vessel_name, vessel_type_main, length, width, longitude, latitude, draught, speed, utc '
        'from {} order by mmsi, mark, utc'.format(table_name))
 
-test_sql = ('select mark, mmsi, imo, vessel_name, vessel_type, length, width, longitude, latitude, draught, speed, utc '
-            'from {} where mmsi = 209292000 order by mmsi, mark, utc'.format(table_name))
+test_sql = ('select mark, mmsi, imo, vessel_name, vessel_type_main, length, width, longitude, latitude, draught, '
+            'speed, utc from {} where mmsi = 209292000 order by mmsi, mark, utc'.format(table_name))
 # 港口图层
 port_shp_name = r'D:\ShipProgram\DoctorPaper\MSRData\TestData\shp\coastline_area_10dis.shp'  # 输入港口图层
 
