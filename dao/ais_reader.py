@@ -61,11 +61,14 @@ class AISReader(object):
     def fetch_unique_mark(self, mark_dict, offset):
         index = offset
         for row in self.input_reader:
-            mark_label = row[self.mark_index]
+            label = row[self.label_index]
 
-            if mark_label not in mark_dict:
-                mark_dict[mark_label] = index
+            if label not in mark_dict:
+                mark_dict[label] = index
                 index += 1
+
+        self.input_file.seek(0)
+        self.start_fetch_data()
 
         return mark_dict, index
 
