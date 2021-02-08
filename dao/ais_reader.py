@@ -12,13 +12,15 @@ from util.utils import Utils
 
 class AISReader(object):
 
-    def __init__(self, file_name, index_index, offset, mark_index=None, ):
+    def __init__(self, file_name, index_index, offset, mark_index=None, label_index=None):
         self.ais_point = None
         self.index = None
         self.mark = None
+        self.label = None
 
         self.index_index = index_index
         self.mark_index = mark_index
+        self.label_index = label_index
         self.offset = offset
 
         self.input_file, self.input_reader = Utils.init_input_reader(file_name)
@@ -33,7 +35,10 @@ class AISReader(object):
 
     def fetch_data(self):
         is_suitable_area = False
-        data_list = [self.ais_point]
+        if self.label:
+            data_list = [[self.ais_point, self.label]]
+        else:
+            data_list = [self.ais_point]
 
         for row in self.input_reader:
             if not self.same_sp_area(row):
@@ -42,13 +47,27 @@ class AISReader(object):
                 return data_list, is_suitable_area
             else:
                 self.update_value(row)
-                data_list.append(self.ais_point)
+                if self.label:
+                    data_list.append([self.ais_point, self.label])
+                else:
+                    data_list.append(self.ais_point)
 
             if not is_suitable_area and self.is_still_point(row):
                 is_suitable_area = True
 
         self.init_value()
         return data_list, is_suitable_area
+
+    def fetch_unique_mark(self, mark_dict, offset):
+        index = offset
+        for row in self.input_reader:
+            mark_label = row[self.mark_index]
+
+            if mark_label not in mark_dict:
+                mark_dict[mark_label] = index
+                index += 1
+
+        return mark_dict, index
 
     def same_sp_area(self, row):
         return int(row[self.index_index]) == self.index
@@ -62,6 +81,7 @@ class AISReader(object):
                                     row[3 + self.offset], row[4 + self.offset], row[5 + self.offset],
                                     row[6 + self.offset], row[7 + self.offset], row[8 + self.offset],
                                     row[9 + self.offset], row[10 + self.offset], row[11 + self.offset], )
+        self.label = row[self.label_index]
 
     def update_mark(self, row):
         self.index = int(row[self.index_index])
@@ -75,6 +95,7 @@ class AISReader(object):
         self.ais_point = None
         self.index = None
         self.mark = None
+        self.label = None
 
     def close(self):
         self.input_file.close()

@@ -44,7 +44,7 @@ rp_acceleration_threshold = 0
 port_search_distance_threshold = 0.1
 
 
-class TrajectoryService(object):
+class RoutePointService(object):
 
     def __init__(self):
         self.target_route_point = RoutePoint()
@@ -77,8 +77,6 @@ class TrajectoryService(object):
         print("deal the ship with mmsi: {}".format(self.source_sp_area.ais_point.mmsi))
         while self.source_sp_area.has_next_data() and self.source_trajectory.has_next_data():
             compare = self.source_trajectory.index - self.source_sp_area.index
-            if self.source_sp_area.index == 33:
-                pass
             if compare < 0:
                 print("!!!!!!!!!!!!!!!it would not happened in right situation")
                 trajectory, _ = self.source_trajectory.fetch_data()
@@ -87,6 +85,9 @@ class TrajectoryService(object):
                 print("deal the ship with mmsi: {}".format(self.source_sp_area.ais_point.mmsi))
             else:
                 self.deal_with_same_ship(port_service)
+
+        while self.source_sp_area.has_next_data():
+            self.deal_with_last_point(port_service)
 
     def deal_with_last_point(self, port_service):
         sp_area, _ = self.source_sp_area.fetch_data()
@@ -186,6 +187,6 @@ if __name__ == '__main__':
     port_service = PortService(port_shp_name)
     print("fetch port info finish!")
 
-    trajectory_service = TrajectoryService()
+    trajectory_service = RoutePointService()
     trajectory_service.extract_route_point(input_sp_file_name, input_trajectory_file_name, output_sp_file_name,
                                            sp_header, output_rp_file_name, rp_header, port_service)

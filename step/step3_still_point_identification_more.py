@@ -73,6 +73,9 @@ class AISPointMore(object):
             else:
                 self.deal_the_same_ship()
 
+        while self.source_sp_area.has_next_data():
+            self.deal_with_last_point()
+
     def deal_with_last_point(self):
         sp_area, is_suitable = self.source_sp_area.fetch_data()
         if is_suitable:
