@@ -12,20 +12,30 @@ class FlowNetwork(object):
         self.list_file, self.list_saver = None, None
         self.matrix_file, self.matrix_saver = None, None
 
-    def init_output_saver(self):
-        self.list_file, self.list_saver = Utils.init_output_saver("", "")
-        self.matrix_file, self.matrix_saver = Utils.init_output_saver("", None)
+    def init_output_saver(self, list_file_name, list_header, matrix_file_name):
+        self.list_file, self.list_saver = Utils.init_output_saver(list_file_name, list_header)
+        self.matrix_file, self.matrix_saver = Utils.init_output_saver(matrix_file_name, None)
 
-    def export_matrix(self, od_matrix, port_name_list,):
+    def export_matrix(self, od_matrix, port_name_list, ):
         height, width = od_matrix.shape
         self.matrix_saver.writerow([''] + port_name_list)
         for i in range(height):
             self.matrix_saver.writerow([port_name_list[i]] + od_matrix[i, :].tolist())
 
-    def export_info(self, od_matrix, header, port_name_list, ):
-        self.list_saver.writerow(header)
+    def export_info(self, od_matrix, port_name_list, ):
         height, width = od_matrix.shape
         for i in range(height):
             for j in range(width):
                 if od_matrix[i, j] != 0:
                     self.list_saver.writerow([port_name_list[i], port_name_list[j], od_matrix[i, j]])
+
+    def close(self):
+        if self.list_file:
+            self.list_file.close()
+            self.list_file = None
+            self.list_saver = None
+
+        if self.matrix_file:
+            self.matrix_file.close()
+            self.matrix_file = None
+            self.matrix_saver = None

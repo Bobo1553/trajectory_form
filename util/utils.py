@@ -76,3 +76,22 @@ class Utils(object):
         for point in point_set:
             total += float(point.__dict__[field_name])
         return total * 1.0 / len(point_set)
+
+    @classmethod
+    def get_most_value(cls, point_set, field_name):
+        value_dict = {}
+        for point in point_set:
+            key = point.__dict__[field_name]
+            if key in dict:
+                value_dict[key] += 1
+            else:
+                value_dict[key] = 1
+
+        final_key, final_value = -1, -1
+        for key, value in value_dict.items():
+            if value > final_value:
+                final_key, final_value = key, value
+            elif value == final_value and key > final_key:
+                final_key = key
+
+        return final_key

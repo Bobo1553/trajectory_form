@@ -17,7 +17,7 @@ directed_info_file = r"D:\ShipProgram\DoctorPaper\MSRData\TestData\step4\directe
 directed_line_file = r"D:\ShipProgram\DoctorPaper\MSRData\TestData\step4\directed_line.txt"
 undirected_info_file = r"D:\ShipProgram\DoctorPaper\MSRData\TestData\step4\undirected_info.csv"
 undirected_line_file = r"D:\ShipProgram\DoctorPaper\MSRData\TestData\step4\undirected_line.txt"
-info_header = ["line_index", "source_index", "target_index", "line_count"]
+info_header = ["line_index", "source_label", "target_label", "line_count"]
 
 # threshold parameter
 line_count_threshold = 0
@@ -44,6 +44,7 @@ class TrajectoryService(object):
         self.mark_dict = {}
         self.position_array = None
         self.line_matrix = None
+        self.port_name_list = None
 
     def form_trajectory(self, input_sp_file_name, input_rp_file_name, directed_info_file, directed_line_file,
                         undirected_info_file, undirected_line_file, info_header, ):
@@ -83,6 +84,8 @@ class TrajectoryService(object):
 
         self.position_array = np.zeros((count, 3))
         self.line_matrix = np.zeros((count, count))
+
+        self.get_port_name_list(count)
 
     def fill_matrix(self):
         while self.source_sp_center.has_next_data() and self.source_rp_center.has_next_data():
@@ -167,9 +170,15 @@ class TrajectoryService(object):
             longitude, latitude, _ = self.position_array[j]
             target_trajectory.line_file.write("1 {} {} 1.#QNAN 1.#QNAN\n".format(i, longitude, latitude))
 
-            target_trajectory.info_saver.writerow([target_trajectory.index, i, j, self.line_matrix[i, j]])
+            target_trajectory.info_saver.writerow([target_trajectory.index, self.port_name_list[i],
+                                                   self.port_name_list[j], self.line_matrix[i, j]])
 
             target_trajectory.index += 1
+
+    def get_port_name_list(self, count):
+        self.port_name_list = [0 for _ in range(count)]
+        for key, value in self.mark_dict:
+            self.port_name_list[value] = key
 
 
 if __name__ == '__main__':

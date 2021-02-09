@@ -43,7 +43,7 @@ class RoutePoint(object):
 
         temp_still_point_info = self.temp_still_point_info
         port_point = sp_area[0]
-        avg_draft = Utils.get_average_value(sp_area, 'draft')
+        avg_draft = Utils.get_most_value(sp_area, 'draft')
         port_point.update_position(port.get_x(), port.get_y())
         port_point.draft = avg_draft
         self.temp_still_point_info = port_point.export_to_csv() + [port.name]
