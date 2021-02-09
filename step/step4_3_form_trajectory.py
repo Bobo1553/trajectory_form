@@ -177,7 +177,7 @@ class TrajectoryService(object):
 
     def get_port_name_list(self, count):
         self.port_name_list = [0 for _ in range(count)]
-        for key, value in self.mark_dict:
+        for key, value in self.mark_dict.items():
             self.port_name_list[value] = key
 
 

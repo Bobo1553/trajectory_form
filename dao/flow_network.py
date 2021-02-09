@@ -12,7 +12,7 @@ class FlowNetwork(object):
         self.list_file, self.list_saver = None, None
         self.matrix_file, self.matrix_saver = None, None
 
-    def init_output_saver(self, list_file_name, list_header, matrix_file_name):
+    def init_output_saver(self, list_file_name, matrix_file_name, list_header, ):
         self.list_file, self.list_saver = Utils.init_output_saver(list_file_name, list_header)
         self.matrix_file, self.matrix_saver = Utils.init_output_saver(matrix_file_name, None)
 
